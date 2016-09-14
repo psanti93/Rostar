@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.domain.Coach;
 import com.domain.Player;
@@ -21,21 +22,21 @@ public class DAOImpl implements DAO {
 	SessionFactory sf;
 
 	@Override
+	@Transactional
 	public List<Player> getPlayers() {
-		// TODO Auto-generated method stub
-		return null;
+		return sf.getCurrentSession().createCriteria(Player.class).list();
 	}
 
 	@Override
+	@Transactional
 	public List<Positions> getPositions() {
-		// TODO Auto-generated method stub
-		return null;
+		return sf.getCurrentSession().createCriteria(Positions.class).list();
 	}
 
 	@Override
+	@Transactional
 	public void addPlayer(Player newPlayer) {
-		// TODO Auto-generated method stub
-		
+		sf.getCurrentSession().save(newPlayer);
 	}
 
 	@Override
