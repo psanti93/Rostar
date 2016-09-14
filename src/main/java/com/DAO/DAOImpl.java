@@ -2,7 +2,10 @@ package com.DAO;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,20 +43,49 @@ public class DAOImpl implements DAO {
 
 	@Override
 	public void deletePlayer(Player removePlayer) {
-		// TODO Auto-generated method stub
 		
+		Session start = sf.openSession();
+				
+		Transaction tx = start.beginTransaction();
+		start.delete(removePlayer);
+		tx.commit();
+		
+		start.close();
+	
 	}
+	
 
 	@Override
 	public void changePosition(Player newPosition) {
-		// TODO Auto-generated method stub
+		
+		Session start = sf.openSession();
+		Transaction tx = start.beginTransaction();
+		start.save(newPosition);
+		tx.commit();
+		
+		start.close(); 
+		
 		
 	}
+	
 
 	@Override
 	public List<Coach> getCoaches() {
-		// TODO Auto-generated method stub
+		
+		Session start = sf.openSession();
+		
+		Criteria criteria = start.createCriteria(Coach.class);
+		
+		//this returns the list of coaches
+		List<Coach> myCoaches = criteria.list();
+		start.close();
+		
+		if(myCoaches.size() > 0){
+			return myCoaches;
+		}
+		else{
 		return null;
+		}
 	}
 	
 	
