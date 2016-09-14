@@ -73,9 +73,7 @@ public class DAOImpl implements DAO {
 	public List<Coach> getCoaches() {
 		
 		Session start = sf.openSession();
-		
 		Criteria criteria = start.createCriteria(Coach.class);
-		
 		//this returns the list of coaches
 		List<Coach> myCoaches = criteria.list();
 		start.close();
