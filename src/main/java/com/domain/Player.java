@@ -1,40 +1,54 @@
 package com.domain;
 
+import javax.persistence.*;
+
+@Entity
 public class Player {
 	
-	private int p_id;
+	@Id
+	@GeneratedValue
+	private int pId;
+	
 	private String fname;
+	
 	private String lname;
 	
+	@ManyToOne(targetEntity = Positions.class)
+	@JoinColumn(name = "posId")
+	private Positions position;
+
 	
-	public Player () {}
-	
-	public Player(int p_id, String fname, String lname) {
-		super();
-		this.p_id = p_id;
-		this.fname = fname;
-		this.lname = lname;
+	//getters and setters
+	public int getpId() {
+		return pId;
 	}
-	public int getP_id() {
-		return p_id;
+
+	public void setpId(int pId) {
+		this.pId = pId;
 	}
-	public void setP_id(int p_id) {
-		this.p_id = p_id;
-	}
+
 	public String getFname() {
 		return fname;
 	}
+
 	public void setFname(String fname) {
 		this.fname = fname;
 	}
+
 	public String getLname() {
 		return lname;
 	}
+
 	public void setLname(String lname) {
 		this.lname = lname;
-	} 
-	
-	
-	
+	}
+
+	public Positions getPosition() {
+		return position;
+	}
+
+	public void setPosition(Positions position) {
+		this.position = position;
+	}
 
 }

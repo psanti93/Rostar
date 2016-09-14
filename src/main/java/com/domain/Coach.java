@@ -1,49 +1,60 @@
 package com.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.*;
+import javax.persistence.*;
 
 @Entity
 @Table (name = "Coach_User")
 public class Coach {
-	@Id
-	@Column(name = "C_ID")
-	private int c_id;
 	
-	@Column(name = "C_FNAME")
+	@Id
+	@GeneratedValue
+	private int cId;
+	
 	private String fname;
 	
-	@Column(name = "C_LNAME")
 	private String lname;
 	
-	public Coach () {}
-	public Coach(int c_id, String fname, String lname) {
-		super();
-		this.c_id = c_id;
-		this.fname = fname;
-		this.lname = lname;
-	}
+	@OneToMany	
+	@JoinTable(
+		name = "Coach_Player",
+		joinColumns = @JoinColumn(name = "cId"),
+		inverseJoinColumns = @JoinColumn(name = "pId")
+	)
+	private List<Player> players;
+
 	
-	
-	public int getCid() {
-		return c_id;
+	//getters and setters
+	public int getcId() {
+		return cId;
 	}
-	public void setCid(int c_id) {
-		this.c_id = c_id;
+
+	public void setcId(int cId) {
+		this.cId = cId;
 	}
+
 	public String getFname() {
 		return fname;
 	}
+
 	public void setFname(String fname) {
 		this.fname = fname;
 	}
+
 	public String getLname() {
 		return lname;
 	}
+
 	public void setLname(String lname) {
 		this.lname = lname;
+	}
+
+	public List<Player> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(List<Player> players) {
+		this.players = players;
 	}
 	
 	 

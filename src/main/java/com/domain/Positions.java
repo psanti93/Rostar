@@ -1,43 +1,43 @@
 package com.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.*;
+import javax.persistence.*;
 
 @Entity
-@Table (name = "POSITION_TABLE")
 public class Positions {
 	
 	@Id
-	@Column(name = "POS_ID")
-	private int pos_id;
-	
-	@Column(name="POSITION_NAME")
+	@GeneratedValue
+	private int posId;
+
 	private String position;
 	
+	@OneToMany(mappedBy = "position")
+	private List<Player> players;
 	
-	
-	public Positions () {}
-	
-	public Positions(int pos_id, String position) {
-		super();
-		this.pos_id = pos_id;
-		this.position = position;
+
+	//getters and setters
+	public int getPosId() {
+		return posId;
 	}
-	public int getPos_id() {
-		return pos_id;
+
+	public void setPosId(int posId) {
+		this.posId = posId;
 	}
-	public void setPos_id(int pos_id) {
-		this.pos_id = pos_id;
-	}
+
 	public String getPosition() {
 		return position;
 	}
+
 	public void setPosition(String position) {
 		this.position = position;
 	}
-	
-	 
 
+	public List<Player> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(List<Player> players) {
+		this.players = players;
+	}
 }
