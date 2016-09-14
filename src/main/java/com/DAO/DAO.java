@@ -7,8 +7,7 @@ import com.domain.Player;
 import com.domain.Positions;
 
 public interface DAO {
-	
-	
+
 		//CRUD
 		
 		//1. As a coach I can view my players 
@@ -25,7 +24,4 @@ public interface DAO {
 		
 		//3. As a player I can view my coaches
 			public List <Coach> getCoaches(); 
-			
-
-
 }
