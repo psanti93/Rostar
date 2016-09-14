@@ -13,6 +13,7 @@ public class Player {
 	
 	private String lname;
 	
+	//refers to the class you're mapping to so the "one" is the foreign key 
 	@ManyToOne(targetEntity = Positions.class)
 	@JoinColumn(name = "posId")
 	private Positions position;
