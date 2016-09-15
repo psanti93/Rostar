@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.DAO.DAO;
+import com.domain.Coach;
 import com.domain.Player;
 import com.domain.Positions;
 
@@ -31,6 +32,24 @@ public class Controller {
 	@RequestMapping(value="create/player", method=RequestMethod.POST)
 	public void addPlayer(@RequestBody Player newPlayer) {
 		dao.addPlayer(newPlayer);
+	}
+	
+	
+	@RequestMapping(value="delete/player", method=RequestMethod.DELETE)
+	public void deletePlayer(@RequestBody Player removePlayer){
+		dao.deletePlayer(removePlayer);
+	}
+	
+	@RequestMapping (value ="change/player", method =RequestMethod.POST)
+	public void changePosition(@RequestBody Player newPosition){
+		dao.changePosition(newPosition);
+		
+	}
+	
+	
+	@RequestMapping (value = "coaches", method = RequestMethod.GET)
+	public List<Coach> getCoaches(){
+		return dao.getCoaches();
 	}
 	
 }
