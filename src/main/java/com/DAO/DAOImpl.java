@@ -25,7 +25,7 @@ public class DAOImpl implements DAO {
 	SessionFactory sf;
 
 	@Override
-	@Transactional
+	@Transactional //opens and closes the session for you automatically 
 	public List<Player> getPlayers() {
 		return sf.getCurrentSession().createCriteria(Player.class).list();
 	}
@@ -41,6 +41,7 @@ public class DAOImpl implements DAO {
 	public void addPlayer(Player newPlayer) {
 		sf.getCurrentSession().save(newPlayer);
 	}
+
 
 	@Override
 	public void deletePlayer(Player removePlayer) {
@@ -77,6 +78,9 @@ public class DAOImpl implements DAO {
 		Criteria criteria = start.createCriteria(Coach.class);
 		//this returns the list of coaches
 		List<Coach> myCoaches = criteria.list();
+		for(Coach c : myCoaches){
+			c.getPlayers();
+		}
 		start.close();
 		
 		if(myCoaches.size() > 0){

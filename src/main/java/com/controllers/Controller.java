@@ -35,10 +35,12 @@ public class Controller {
 	}
 	
 	
+	//this transforms a java object into a jSON
 	@RequestMapping(value="delete/player", method=RequestMethod.DELETE)
 	public void deletePlayer(@RequestBody Player removePlayer){
 		dao.deletePlayer(removePlayer);
 	}
+	
 	
 	@RequestMapping (value ="change/player", method =RequestMethod.POST)
 	public void changePosition(@RequestBody Player newPosition){
