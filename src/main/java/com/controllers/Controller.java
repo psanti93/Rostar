@@ -13,7 +13,7 @@ import com.domain.Coach;
 import com.domain.Player;
 import com.domain.Positions;
 
-@RestController
+@RestController	//makes Controller class a spring bean, meaning its lifecycle is managed by the spring container, also lets Spring container know that is is a controller for a webapp giving it certain properties
 public class Controller {
 	
 	@Autowired
@@ -29,29 +29,44 @@ public class Controller {
 		return dao.getPositions();
 	}
 	
-	@RequestMapping(value="create/player", method=RequestMethod.POST)
-	public void addPlayer(@RequestBody Player newPlayer) {
-		dao.addPlayer(newPlayer);
+	@RequestMapping (value = "coaches", method = RequestMethod.GET)
+	public List<Coach> getCoaches(){
+		return dao.getCoaches();
 	}
 	
+	@RequestMapping(value="create/player", method=RequestMethod.POST)
+	public Player addPlayer(@RequestBody Player newPlayer) {
+		try{
+			dao.addPlayer(newPlayer);
+			return newPlayer;
+		}
+		catch(Exception e){
+			return null;
+		}
+	}
 	
 	//this transforms a java object into a jSON
 	@RequestMapping(value="delete/player", method=RequestMethod.DELETE)
-	public void deletePlayer(@RequestBody Player removePlayer){
-		dao.deletePlayer(removePlayer);
+	public Player deletePlayer(@RequestBody Player removePlayer){
+		try{
+			dao.deletePlayer(removePlayer);
+			return removePlayer;
+		}
+		catch(Exception e){
+			return null;
+		}
 	}
 	
 	
 	@RequestMapping (value ="change/player", method =RequestMethod.POST)
-	public void changePosition(@RequestBody Player newPosition){
-		dao.changePosition(newPosition);
-		
-	}
-	
-	
-	@RequestMapping (value = "coaches", method = RequestMethod.GET)
-	public List<Coach> getCoaches(){
-		return dao.getCoaches();
+	public Player changePosition(@RequestBody Player newPosition){
+		try{
+			dao.changePosition(newPosition);
+			return newPosition;
+		}
+		catch(Exception e){
+			return null;
+		}
 	}
 	
 }

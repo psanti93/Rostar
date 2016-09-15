@@ -27,12 +27,15 @@ public class DAOImpl implements DAO {
 	@Override
 	@Transactional //opens and closes the session for you automatically 
 	public List<Player> getPlayers() {
-		return sf.getCurrentSession().createCriteria(Player.class).list();
+		List<Player> players = sf.getCurrentSession().createCriteria(Player.class).list();
+		System.out.println(players.get(0).getFname() + players.get(0).getLname() + players.get(0).getCoaches().get(0).getFname() + players.get(0).getPosition().getPosition());
+		return players;
 	}
 
 	@Override
 	@Transactional
 	public List<Positions> getPositions() {
+		System.out.println(sf.getCurrentSession().createCriteria(Positions.class).list());
 		return sf.getCurrentSession().createCriteria(Positions.class).list();
 	}
 
@@ -66,8 +69,6 @@ public class DAOImpl implements DAO {
 		tx.commit();
 		
 		start.close(); 
-		
-		
 	}
 	
 
