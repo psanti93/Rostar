@@ -21,8 +21,6 @@ public class Coach {
 	@JsonIgnore
 	private List<Player> players;
 
-	
-	//getters and setters
 	public int getcId() {
 		return cId;
 	}
@@ -54,6 +52,4 @@ public class Coach {
 	public void setPlayers(List<Player> players) {
 		this.players = players;
 	}
-	
-	 
 }

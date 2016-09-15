@@ -40,6 +40,7 @@ public class Controller {
 			return newPlayer;
 	}
 	
+	//this transforms a java object into a jSON
 	@RequestMapping(value="delete/player", method=RequestMethod.DELETE)
 	public Player deletePlayer(@RequestBody Player removePlayer){
 		try{
@@ -50,7 +51,7 @@ public class Controller {
 			return null;
 		}
 	}
-	
+
 	@RequestMapping (value ="change/player", method =RequestMethod.PUT)
 	public Player changePosition(@RequestBody Player newPosition){
 		try{

@@ -19,13 +19,12 @@ public class Player {
 	
 	@ManyToOne(targetEntity = Coach.class)	//CascadeType.REMOVE deletes are rows in all tables that point to the player that was deleted
 	@JoinColumn(name = "cId")
-	private List<Coach> coaches;
+	private Coach coaches;
 	
 	@ManyToOne(targetEntity = Positions.class)
 	@JoinColumn(name = "posId")
 	private Positions position;
 
-	//getters and setters
 	public int getpId() {
 		return pId;
 	}
@@ -50,11 +49,11 @@ public class Player {
 		this.lname = lname;
 	}
 
-	public List<Coach> getCoaches() {
+	public Coach getCoaches() {
 		return coaches;
 	}
 
-	public void setCoaches(List<Coach> coaches) {
+	public void setCoaches(Coach coaches) {
 		this.coaches = coaches;
 	}
 
