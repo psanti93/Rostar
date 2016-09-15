@@ -17,7 +17,7 @@ public class Player {
 	
 	private String lname;
 	
-	@ManyToOne	//CascadeType.REMOVE deletes are rows in all tables that point to the player that was deleted
+	@ManyToOne(targetEntity = Coach.class)	//CascadeType.REMOVE deletes are rows in all tables that point to the player that was deleted
 	@JoinColumn(name = "cId")
 	private List<Coach> coaches;
 	

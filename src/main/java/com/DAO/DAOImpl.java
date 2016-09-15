@@ -28,7 +28,6 @@ public class DAOImpl implements DAO {
 	@Transactional
 	public List<Player> getPlayers() {
 		List<Player> players = sf.getCurrentSession().createCriteria(Player.class).list();
-		System.out.println(players.get(0).getFname() + players.get(0).getLname() + players.get(0).getCoaches().get(0).getFname() + players.get(0).getPosition().getPosition());
 		return players;
 	}
 

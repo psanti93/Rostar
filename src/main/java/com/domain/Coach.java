@@ -17,7 +17,7 @@ public class Coach {
 	
 	private String lname;
 	
-	@OneToMany(mappedBy = "cId")
+	@OneToMany(mappedBy = "coaches")
 	@JsonIgnore
 	private List<Player> players;
 
