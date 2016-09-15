@@ -70,7 +70,9 @@ public class DAOImpl implements DAO {
 			oldPlayer.setLname(newPosition.getLname());
 		}
 		if(newPosition.getFname() != null){
+			System.out.print(newPosition.getFname());
 			oldPlayer.setFname(newPosition.getFname());
+		
 		}
 		if(newPosition.getPosition() != null){
 			oldPlayer.setPosition(newPosition.getPosition());

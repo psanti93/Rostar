@@ -54,13 +54,10 @@ public class Controller {
 
 	@RequestMapping (value ="change/player", method =RequestMethod.PUT)
 	public Player changePosition(@RequestBody Player newPosition){
-		try{
+		
 			dao.changePosition(newPosition);
 			return newPosition;
-		}
-		catch(Exception e){
-			return null;
-		}
+		
 	}
 	
 }
