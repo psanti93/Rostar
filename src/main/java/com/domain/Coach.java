@@ -3,6 +3,8 @@ package com.domain;
 import java.util.*;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table (name = "Coach_User")
 public class Coach {
@@ -15,12 +17,8 @@ public class Coach {
 	
 	private String lname;
 	
-	@OneToMany	
-	@JoinTable(
-		name = "Coach_Player",
-		joinColumns = @JoinColumn(name = "cId"),
-		inverseJoinColumns = @JoinColumn(name = "pId")
-	)
+	@OneToMany(mappedBy = "cId")
+	@JsonIgnore
 	private List<Player> players;
 
 	

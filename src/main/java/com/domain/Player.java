@@ -17,16 +17,11 @@ public class Player {
 	
 	private String lname;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE})	//CascadeType.REMOVE deletes are rows in all tables that point to the player that was deleted
-	@JoinTable(
-		name = "Coach_Player",
-		joinColumns = @JoinColumn(name = "pId"),
-		inverseJoinColumns = @JoinColumn(name = "cId")
-	)
-	@JsonIgnore
+	@ManyToOne	//CascadeType.REMOVE deletes are rows in all tables that point to the player that was deleted
+	@JoinColumn(name = "cId")
 	private List<Coach> coaches;
 	
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Positions.class)
+	@ManyToOne(targetEntity = Positions.class)
 	@JoinColumn(name = "posId")
 	private Positions position;
 

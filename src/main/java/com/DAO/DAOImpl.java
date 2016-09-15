@@ -64,9 +64,19 @@ public class DAOImpl implements DAO {
 		
 		Session start = sf.openSession();
 		Transaction tx = start.beginTransaction();
-		start.save(newPosition);
-		tx.commit();
 		
+		Player oldPlayer = (Player) start.get(Player.class, newPosition.getpId());
+		if(newPosition.getLname() != null){
+			oldPlayer.setLname(newPosition.getLname());
+		}
+		if(newPosition.getFname() != null){
+			oldPlayer.setFname(newPosition.getFname());
+		}
+		if(newPosition.getPosition() != null){
+			oldPlayer.setPosition(newPosition.getPosition());
+		}
+		start.save(oldPlayer);
+		tx.commit();
 		start.close(); 
 	}
 	

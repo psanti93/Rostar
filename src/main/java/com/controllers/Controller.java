@@ -36,13 +36,8 @@ public class Controller {
 	
 	@RequestMapping(value="create/player", method=RequestMethod.POST)
 	public Player addPlayer(@RequestBody Player newPlayer) {
-		try{
 			dao.addPlayer(newPlayer);
 			return newPlayer;
-		}
-		catch(Exception e){
-			return null;
-		}
 	}
 	
 	@RequestMapping(value="delete/player", method=RequestMethod.DELETE)
@@ -56,7 +51,7 @@ public class Controller {
 		}
 	}
 	
-	@RequestMapping (value ="change/player", method =RequestMethod.POST)
+	@RequestMapping (value ="change/player", method =RequestMethod.PUT)
 	public Player changePosition(@RequestBody Player newPosition){
 		try{
 			dao.changePosition(newPosition);
