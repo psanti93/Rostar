@@ -1,5 +1,7 @@
 package com.domain;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +14,14 @@ public class Player {
 	private String fname;
 	
 	private String lname;
+	
+	@OneToMany(cascade = {CascadeType.REMOVE})	
+	@JoinTable(
+		name = "Coach_Player",
+		joinColumns = @JoinColumn(name = "pId"),
+		inverseJoinColumns = @JoinColumn(name = "cId")
+	)
+	private List<Coach> coaches;
 	
 	@ManyToOne(targetEntity = Positions.class)
 	@JoinColumn(name = "posId")
