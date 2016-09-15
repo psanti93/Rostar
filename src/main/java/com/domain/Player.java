@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Player {
 	
@@ -15,19 +17,19 @@ public class Player {
 	
 	private String lname;
 	
-	@OneToMany(cascade = {CascadeType.REMOVE})	
+	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE})	//CascadeType.REMOVE deletes are rows in all tables that point to the player that was deleted
 	@JoinTable(
 		name = "Coach_Player",
 		joinColumns = @JoinColumn(name = "pId"),
 		inverseJoinColumns = @JoinColumn(name = "cId")
 	)
+	@JsonIgnore
 	private List<Coach> coaches;
 	
-	@ManyToOne(targetEntity = Positions.class)
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Positions.class)
 	@JoinColumn(name = "posId")
 	private Positions position;
 
-	
 	//getters and setters
 	public int getpId() {
 		return pId;
@@ -53,6 +55,14 @@ public class Player {
 		this.lname = lname;
 	}
 
+	public List<Coach> getCoaches() {
+		return coaches;
+	}
+
+	public void setCoaches(List<Coach> coaches) {
+		this.coaches = coaches;
+	}
+
 	public Positions getPosition() {
 		return position;
 	}
@@ -60,5 +70,4 @@ public class Player {
 	public void setPosition(Positions position) {
 		this.position = position;
 	}
-
 }

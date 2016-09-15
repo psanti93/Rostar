@@ -3,6 +3,8 @@ package com.domain;
 import java.util.*;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Positions {
 	
@@ -11,10 +13,6 @@ public class Positions {
 	private int posId;
 
 	private String position;
-	
-	@OneToMany(mappedBy = "position")
-	private List<Player> players;
-	
 
 	//getters and setters
 	public int getPosId() {
@@ -31,13 +29,5 @@ public class Positions {
 
 	public void setPosition(String position) {
 		this.position = position;
-	}
-
-	public List<Player> getPlayers() {
-		return players;
-	}
-
-	public void setPlayers(List<Player> players) {
-		this.players = players;
 	}
 }
