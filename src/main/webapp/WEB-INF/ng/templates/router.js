@@ -16,6 +16,8 @@ angular.module("Rostar").config(
 			//states define a url, template and controller
 			$stateProvider
 			.state('homeState', {
+		
+				//the template is the html and the controller holds the functions and variable to help generate the template
 				url: '/home',
 				templateUrl: 'ng/templates/home.html',
 				controller: 'homeCtrl as hc'
@@ -23,6 +25,7 @@ angular.module("Rostar").config(
 			.state('playerState', {
 				url: '/players',
 				templateUrl: 'ng/templates/players.html',
+				//pc has to be referred in the html 
 				controller: 'playerCtrl as pc'
 			})
 			.state('coachState', {
