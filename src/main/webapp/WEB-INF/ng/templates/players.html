@@ -14,12 +14,10 @@
 
 <!-- p is an instance of player inside this table  -->
 <tr ng-repeat ="p in pc.positions ">
-  <td ng-bind ="p.player.firstName"> </td>
-  <td ng-bind ="p.player.lastName"> </td>
-  <td ng-bind ="p.player.position"> </td>
+  <td>{{p.fname}} </td>
+  <td>{{p.lname}} </td>
+  <td>{{p.position.position}} </td>
   <td><button type="button", ng-click="pc.deletedPlayer = p; pc.deletePlayer()"> Delete Player</button> </td>
-		
-	
 </tr>
 </table>
 

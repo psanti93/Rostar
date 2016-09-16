@@ -17,7 +17,7 @@ playerHomeData.showPositions = function ()
 {
 	
 	$http({
-		url: '/Rostar/positions',
+		url: '/Rostar/players',
 		method: "GET",
 		headers: {'Content-Type': 'application/json'}
 	
@@ -47,6 +47,9 @@ playerHomeData.deletePlayer = function ()
 	 headers: {'Content-Type': 'application/json'}
 	
 	})		
+	.then(function(){
+		playerHomeData.showPositions();
+	})
 
 }
 
